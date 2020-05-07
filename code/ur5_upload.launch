@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="partType" default="sinter" />
+  <group if="$(eval arg('partType')=='sinter')">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder
+      '$(find ur_description)/urdf/ur5_robot_sinter.urdf.xacro'" />
+  </group>
+  <group if="$(eval arg('partType')=='screw')">
+    <param name="robot_description" command="$(find xacro)/xacro --inorder
+      '$(find ur_description)/urdf/ur5_robot_screw.urdf.xacro'" />
+  </group>
+</launch>

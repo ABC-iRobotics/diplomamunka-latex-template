@@ -1,0 +1,76 @@
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\linespread{1.3} % másfeles sörköz
+\usepackage[magyar]{babel} % magyarra fordítja a dolgokat
+\usepackage{listings} % code snippethez
+\usepackage[left=2.50cm, right=2.50cm, top=2.50cm, bottom=4.00cm]{geometry} % Margó setup
+
+% Times New Romanra varázsolja a betűket ha kikommentezed
+%\usepackage{times}
+
+\ProvidesPackage{oeNIKstyle}[2018/05/16 v.02 OE-NIK Latex Template by Rácz Dániel]
+\RequirePackage{graphicx}
+
+% Command definitions and default values
+\newcommand*{\project}[1]{\gdef\@project{#1}}
+\newcommand*{\@project}{Final Year Project}
+
+\newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
+\newcommand*{\@supervisor}{\texttt{\string\supervisor} .}
+
+\newcommand*{\courseName}[1]{\gdef\@courseName{#1}}
+\newcommand*{\@courseName}[1]{}
+
+\newcommand*{\documentumTypeName}[1]{\gdef\@documentumTypeName{#1}}
+\newcommand*{\@documentumTypeName}[1]{\texttt{ }}
+
+\newcommand*{\torzsKonyvSzam}[1]{\gdef\@torzsKonyvSzam{#1}}
+\newcommand*{\@torzsKonyvSzam}[1]{ }
+
+
+%Redefinition of the maketitle command with custom stlye 
+\renewcommand*{\maketitle}{%
+	\begin{titlepage}
+		\centering % Sets the whole scope to be centering
+		{
+			%Header picture placement
+			\begin{minipage}{0.48\textwidth} \begin{flushleft}
+			\includegraphics[scale = 1]{header/cimer}
+			\end{flushleft}\end{minipage}
+			\begin{minipage}{0.48\textwidth} \begin{flushright}
+			\includegraphics[scale = 1]{header/neuman}
+			\end{flushright}\end{minipage}
+																							%%% Set the "cursor" a big higher, so text can be inserted between the two pictures
+		\vspace*{-2.5cm}	
+		
+		\textsc{\Large \textbf{Informatikai kar}\\ \vspace{5px} \textbf{Neumann János} }\\	
+
+			\vspace{8cm}
+			\resizebox{0.85\linewidth}{!}{\bfseries DIPLOMAMUNKA}
+
+		
+		%	{\huge\bfseries\@title\unskip\strut\par} 
+		%	\vspace{2cm}
+		%	{\scshape\LARGE\@courseName\strut\par}
+		%	\vspace{1cm}
+		%	{\scshape\Large\@documentumTypeName\strut\par}
+		%	\vspace{1.5cm}	
+			\vfill
+		}
+		%Part that contains the details of the actual student
+		\raggedright
+		{
+			\textbf{OE-NIK} \hspace{1.0cm}
+			 \normalsize{Hallgató neve:} \hfill
+			\textbf\itshape\textbf{\@author}\unskip\strut\par
+			
+			{\bfseries \the\year}\hspace{1.9cm}
+			\normalsize{Hallgató törzskönyvi száma:}
+			\hfill \textbf\itshape\textbf{\@torzsKonyvSzam}\unskip\strut
+		}
+	\end{titlepage}
+}
+\endinput
