@@ -1,7 +1,9 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage{oeNIKstyle}
+
 \usepackage[utf8]{inputenc}
 
+\usepackage{float}
 \usepackage{graphicx}
 \usepackage{subfig}
 \usepackage[titletoc]{appendix}
@@ -16,7 +18,8 @@
 	urlcolor=cyan,
 }
 
-%\usepackage{minted}
+\usepackage{minted}
+\usemintedstyle{tango}
 \usepackage{verbatim}
 
 
@@ -39,9 +42,9 @@
 	\includepdf[pages=-]{includes/feladatlap}
 	\includepdf{includes/hallgatoi_nyilatkozat}
 	
-	\tableofcontents
-	\listoffigures
-	\listoftables
+	\tableofcontents\newpage
+	\listoffigures\newpage
+	\listoftables\newpage
 	
 	\section{Bevezetés}
 	A dokumentum célja, hogy kiindulópontot adjon a szakdolgozat és diplomamunka elkészítéséhez LaTex-ben környezetben. 
@@ -96,7 +99,7 @@
 	\end{table}
 
 	Egy másik táblázat.
-	\begin{table}[h!]
+	\begin{table}
 	\centering
 	\begin{tabular}{ccccc}
 		Robotcsukló & \begin{tabular}[c]{@{}c@{}}min. poz.\\ {[}rad{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}max. poz.\\ {[}rad{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}max. sebesség\\ {[}rad/s{]}\end{tabular} & \begin{tabular}[c]{@{}c@{}}max. gyorsulás\\ {[}rad/s\textasciicircum{}2{]}\end{tabular} \\
@@ -157,25 +160,30 @@
 	
 	A \verb|minted| csomag segítségével tudunk kódokat beilleszteni. Első lehetőség a kód beillesztése a LaTex fileba: 
 	
-%	\begin{minted}[breaklines]{c++}
-%		std::vector<std::pair<double, geometry_msgs::Transform>> partDistList;
-%		partDistList.resize(lastPickPoseVect.size());
-%		int counter = 0;
-%		double distance = 0.0;
-%		for(auto it = lastPickPoseVect.begin(); it != lastPickPoseVect.end(); it++) {
-%			tf::Transform tmpPose;
-%			tf::transformMsgToTF(*it, tmpPose);
-%			distance = lastPickPose.getOrigin().distance(tmpPose.getOrigin());
-%			// put the distance and the pose to the partDistList
-%			partDistList[counter].first = distance;
-%		partDistList[counter].second = *it;
-%		counter++;
-%		}
-%	\end{minted}
+	\begin{minted}[
+        frame=lines,
+        framesep=2mm,
+        baselinestretch=1.2,
+        fontsize=\footnotesize,
+    linenos]{c++}
+		std::vector<std::pair<double, geometry_msgs::Transform>> partDistList;
+		partDistList.resize(lastPickPoseVect.size());
+		int counter = 0;
+		double distance = 0.0;
+		for(auto it = lastPickPoseVect.begin(); it != lastPickPoseVect.end(); it++) {
+			tf::Transform tmpPose;
+			tf::transformMsgToTF(*it, tmpPose);
+			distance = lastPickPose.getOrigin().distance(tmpPose.getOrigin());
+			// put the distance and the pose to the partDistList
+			partDistList[counter].first = distance;
+		partDistList[counter].second = *it;
+		counter++;
+		}
+	\end{minted}
 	
 	Sokszor azonban kényelmesebb behivatkozni:
 	
-	%\inputminted[bgcolor=bg]{c++}{code/example.cpp}
+	\inputminted{c++}{code/example.cpp}
 	
 	A  \verb|minted| egy nagyon szofisztikált csomag, rengeteg beállítással. A teljes dokumentáció \href{https://ctan.org/pkg/minted?lang=en}{itt} érhető el.
 	
@@ -189,12 +197,12 @@
 	\begin{appendices}
 		\section{ur-ros-state-server}
 		\label{appendix:ur-ros-state-server}
-		%\inputminted[breaklines]{js}{/codes/ur5_state_server.js}
+		\inputminted{js}{code/ur5_state_server.js}
 		
 		\pagebreak
 		
 		\section{ur\_5\_upload}
 		\label{appendix:ur_5_upload}
-		%\inputminted[breaklines]{xml}{/codes/ur5_upload.launch}
+		\inputminted{xml}{code/ur5_upload.launch}
 	\end{appendices}
 \end{document}
