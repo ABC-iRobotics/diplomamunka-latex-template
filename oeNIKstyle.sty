@@ -26,6 +26,9 @@
 \usepackage{lipsum}
 \usepackage{enumitem} % sets list properties such as item spacing
 \usepackage{ragged2e}
+\usepackage{mathtools}
+\usepackage{relsize}
+
 
 \ProvidesPackage{oeNIKstyle}[2018/05/16 v.02 OE-NIK Latex Template by Rácz Dániel]
 \RequirePackage{graphicx}
@@ -334,6 +337,10 @@
 % tables numbering
 \setcounter{table}{0}
 \renewcommand{\thetable}{\arabic{section}-\arabic{table}}
+
+% figures numbering
+\numberwithin{equation}{section}
+
 
 % setting the dots right in the table of contents
 \renewcommand{\cftsecdotsep}{1}

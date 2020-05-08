@@ -140,7 +140,26 @@
 
 	Minden amit a LaTex táblázatokról tudni érdemes: https://www.overleaf.com/learn/latex/tables
 	
-	
+	\section{Képletek}
+	Ha egy képletet akarok bemutatni, akkor lássuk a \ref{eq:fig_akarmi} képletet:\\
+    \begin{equation}
+        \mathlarger{ % képlet növelés
+        \cos{\alpha-\beta} = \cos{\alpha}\cdot\sin{\beta}-\cos{\beta}\cdot\sin{\alpha}}
+        \label{eq:fig_akarmi}
+    \end{equation}	
+    
+    Ha több sorosat, akkor meg a \ref{eq:fig_valami} képletet, ahol az egyenlőségjelek össze vannak rendezve \textbackslash \&=, és nincs rajta méretváltoztató utasítás.
+    \begin{equation}
+        %
+        \begin{aligned}
+        \cos{\alpha-\beta} \&= \cos{\alpha}\cdot\sin{\beta}-\cos{\beta}\cdot\sin{\alpha}\\
+         \cos{\alpha}\cdot\sin{\beta}-\cos{\beta}\cdot\sin{\alpha} \&= \cos{\alpha-\beta}
+        \end{aligned}
+        \label{eq:fig_valami}
+    \end{equation}	
+    
+    inline egyenlet lehet pl \(V_{max}=2 \), de lehet így is: \begin{equtation} \sqrt{a+b}\end{equtation}, izlés szerint. 
+
 	\section{Egyéb szerkezetek}
 	Néhány gyakran használt szerkezetet itt mutatunk be. Folyamatosan bővül.
 	
