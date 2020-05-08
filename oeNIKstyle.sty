@@ -319,6 +319,7 @@
     \newpage
 }
 
+% list of tables that shows right in the table of contents
 \newcommand{\maketables}{
     \newpage
     \addcontentsline{toc}{section}{Táblazatok jegyzéke}
@@ -326,6 +327,13 @@
     \newpage
 }
 
+% figures numbering
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}
+
+% tables numbering
+\setcounter{table}{0}
+\renewcommand{\thetable}{\arabic{section}-\arabic{table}}
 
 % setting the dots right in the table of contents
 \renewcommand{\cftsecdotsep}{1}
@@ -336,5 +344,9 @@
 \renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
 \renewcommand{\cftsubsecleader}{\cftdotfill{\cftsubsecdotsep}}
 \renewcommand{\cftsubsubsecleader}{\cftdotfill{\cftsubsubsecdotsep}}
+
+% setting the list of tables and figures to show without inde4nt
+\cftsetindents{fig}{0pt}{2.3em}
+\cftsetindents{tab}{0pt}{2.3em}
 
 \endinput
