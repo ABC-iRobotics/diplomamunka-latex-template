@@ -28,6 +28,7 @@
 \usepackage{ragged2e}
 \usepackage{mathtools}
 \usepackage{relsize}
+\usepackage{ifthen}
 
 
 \ProvidesPackage{oeNIKstyle}[2018/05/16 v.02 OE-NIK Latex Template by Rácz Dániel]
@@ -74,6 +75,16 @@
 \newcommand*{\terminationDate}[1]{\gdef\@terminationDate{#1}}
 \newcommand*{\@terminationDate}[1]{}
 
+\newcommand*{\pageNumberingPosition}[1]{\gdef\@pageNumberingPosition{#1}}
+\newcommand*{\@pageNumberingPosition}[1]{}
+
+\newcommand*{\showSumPages}[1]{\gdef\@showSumPages{#1}}
+\newcommand*{\@showSumPages}[1]{}
+
+\newcommand{\setPageNumbering}[2]{
+    \pageNumberingPosition{#1}
+    \showSumPages{#2}
+}
 
 % Redefinition of the maketitle command with custom stlye 
 % copied and modified the maketitle part of the 2019/01/04 v.03 oeNIKstyle template
@@ -223,7 +234,6 @@
     \end{titlepage}
 }
 
-
 \newcommand*{\makedeclaration}{
     \begin{titlepage}
         \centering
@@ -269,29 +279,57 @@
     \end{titlepage}
 }
 
+
+	
+%	\count0=\value{\pageNumberingPosition}
+%	\count1=0
+%	\ifnum \count0=\count1 20 \else 10 \fi
+%	\newline
+%	\@pageNumberingPosition
+	
 % default page style with numbering on the right and sum of pages 
 \newcommand{\makedefaultpagestyle}{
     \pagestyle{fancy}
     \fancyhf{}
-    \rfoot{\thepage \hspace{1pt} / \pageref{LastPage}}% remove this for centered page numbering
-    %\cfoot{\thepage \hspace{1pt} / \pageref{LastPage}}% this is for centered page numbering
+    \ifnum \@pageNumberingPosition=1{
+        \ifnum \@showSumPages=1 {
+            \rfoot{\thepage \hspace{1pt} / \pageref*{LastPage}}
+        } \else {
+            \rfoot{\thepage}
+        }\fi
+    } \else {
+        \ifnum \@showSumPages=1 {
+            \cfoot{\thepage \hspace{1pt} / \pageref*{LastPage}}% this is for centered page numbering
+        } \else {
+            \cfoot{\thepage}
+        }\fi
+    }\fi
     
     % change the pt values for turning on or off the header and footer lines
     \renewcommand{\headrulewidth}{0pt}
     \renewcommand{\footrulewidth}{0.4pt}
-}
+
 
     \addto\captions{
         \renewcommand{\contentsname}{Irodalomjegyzék}
     }
+}
 
 % redefine the plain style for table of contents and list of figures, tables...
 \fancypagestyle{plain}{
     \frenchspacing
     \sloppy % do not use hyphens and still keep justified align
     \fancyhf{}
-    \fancyfoot[R]{\thepage\ / \pageref{LastPage}} % remove this for centered page numbering
-    % \fancyfoot[C]{\thepage\ / \pageref{LastPage}} % this is for centered page numbering
+    % set page numbering
+    \ifnum \@pageNumberingPosition=1 \def \pagepos{R} \else \def \pagepos{C} \fi
+    \fancyfoot[\pagepos] 
+    {
+        \ifnum \@showSumPages=1 {
+            {\thepage \hspace{1pt} / \pageref*{LastPage}}
+        } \else {
+            {\thepage}
+        }\fi
+    }
     
     % change the pt values for turning on or off the header and footer lines
     \renewcommand{\headrulewidth}{0pt} % remove the top line on page
@@ -337,7 +375,7 @@
 \setcounter{table}{0}
 \renewcommand{\thetable}{\arabic{section}-\arabic{table}}
 
-% figures numbering
+% equtation numbering
 \numberwithin{equation}{section}
 
 
