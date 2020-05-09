@@ -22,15 +22,31 @@
 \usemintedstyle{tango}
 \usepackage{verbatim}
 
-
+%\usepackage[T1]{fontenc}
 \usepackage[magyar]{babel} % magyarra nyelvi csomag
-
 
 \setlength{\parindent}{0 mm} % behúzás mértékét állíthatjuk be
 
 
 \author{Gipsz Jakab}
+\torzsKonyvSzam{T/xxxxxx/xxxxxx/x}
+\neptunNumber{HTKMNE}
 
+% lehetne egy változóban, de akkor nem tudjuk kontrolállni, hogy hogyan legyen megtörve.
+\hunTitleFirstRow{Szoftver megoldás fejlesztése rendezetlen alkatrészek}
+\hunTitleSecondRow{robotizált manipulációjára}
+
+\engTitleFirstRow{Development of a software solution for robotized handling}
+\engTitleSecondRow{of assoreted components}
+
+\supervisor{Dr. Galambos Péter}
+\consultant{???}
+
+\deadlineDate{2020. május 22.}
+\terminationDate{2021. május 22.}
+
+% set the page style
+\makedefaultpagestyle
 
 %TODO hivatkozások előtt space-t hagyni
 %TODO képeknél hivatkozást zárójelbe rakni: (Forrás:cite)
@@ -38,20 +54,20 @@
 %TODO hivatkozások javítása
 
 \begin{document}
-	\includepdf{includes/fedlap}
-	\includepdf[pages=-]{includes/feladatlap}
-	\includepdf{includes/hallgatoi_nyilatkozat}
+	\maketitle
+	\makeassigmentpage
+	% a feladat és a tartalmazandók listája a lennti két fájlból töltendő be
+	\makeassigmentpagetwo{theassigment}{themustbeinassigment}
+	\makedeclaration
+	\setcounter{page}{1} % start counting pages from here
 	
-	\tableofcontents\newpage
-	\listoffigures\newpage
-	\listoftables\newpage
+	\maketoc
 	
 	\section{Bevezetés}
 	A dokumentum célja, hogy kiindulópontot adjon a szakdolgozat és diplomamunka elkészítéséhez LaTex-ben környezetben. 
 	
-	Itt szándékosan elhelyezünk egy oldaltörést.
+	Itt szándékosan elhelyezünk egy oldaltörést\footnote{mert megtehetjük}.
 	\pagebreak
-	
 	
 	\section{Ábrák}
 	
@@ -124,7 +140,26 @@
 
 	Minden amit a LaTex táblázatokról tudni érdemes: https://www.overleaf.com/learn/latex/tables
 	
-	
+	\section{Képletek}
+	Ha egy képletet akarok bemutatni, akkor lássuk a \ref{eq:fig_akarmi} képletet:\\
+    \begin{equation}
+        \mathlarger{ % képlet növelés
+        \cos{\alpha-\beta} = \cos{\alpha}\cdot\sin{\beta}-\cos{\beta}\cdot\sin{\alpha}}
+        \label{eq:fig_akarmi}
+    \end{equation}	
+    
+    Ha több sorosat, akkor meg a \ref{eq:fig_valami} képletet, ahol az egyenlőségjelek össze vannak rendezve \textbackslash \&=, és nincs rajta méretváltoztató utasítás.
+    \begin{equation}
+        %
+        \begin{aligned}
+        \cos{\alpha-\beta} \&= \cos{\alpha}\cdot\sin{\beta}-\cos{\beta}\cdot\sin{\alpha}\\
+         \cos{\alpha}\cdot\sin{\beta}-\cos{\beta}\cdot\sin{\alpha} \&= \cos{\alpha-\beta}
+        \end{aligned}
+        \label{eq:fig_valami}
+    \end{equation}	
+    
+    inline egyenlet lehet \(V_{max}=2 \) így. 
+
 	\section{Egyéb szerkezetek}
 	Néhány gyakran használt szerkezetet itt mutatunk be. Folyamatosan bővül.
 	
@@ -188,14 +223,15 @@
 	A  \verb|minted| egy nagyon szofisztikált csomag, rengeteg beállítással. A teljes dokumentáció \href{https://ctan.org/pkg/minted?lang=en}{itt} érhető el.
 	
 	
-	\bibliographystyle{ieeetr}
-	\bibliography{bib/diplomamunka}
-	\newpage
+    \makebibliography
+	\makefigures
+	\maketables
+	
 	\appendix
 	
 	\section*{Függelék}
 	\begin{appendices}
-		\section{ur-ros-state-server}
+		\section{ur-ros-state-server} 
 		\label{appendix:ur-ros-state-server}
 		\inputminted{js}{code/ur5_state_server.js}
 		
@@ -206,3 +242,4 @@
 		\inputminted{xml}{code/ur5_upload.launch}
 	\end{appendices}
 \end{document}
+
