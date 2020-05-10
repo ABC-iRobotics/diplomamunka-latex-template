@@ -399,7 +399,8 @@
 % algorithm boxing
 
 \newcommand{\setalgorithmcounter}{
-    \newcounter{fpcounter}{1}
+    \newcounter{fpcounter}[section]
+    \setcounter{fpcounter}{1}
     \renewcommand{\thefpcounter}{\arabic{section}-\arabic{fpcounter}}
 }
 
