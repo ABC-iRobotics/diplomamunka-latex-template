@@ -29,6 +29,7 @@
 \usepackage{mathtools}
 \usepackage{relsize}
 \usepackage{ifthen}
+\usepackage{algpseudocode}
 
 
 \ProvidesPackage{oeNIKstyle}[2018/05/16 v.02 OE-NIK Latex Template by Rácz Dániel]
@@ -378,6 +379,58 @@
 % equtation numbering
 \numberwithin{equation}{section}
 
+% algorithm in hungarian
+\algrenewcommand{\algorithmicprocedure}{\textbf{függvény}}
+\algrenewcommand{\algorithmicfor}{\textbf{ciklus}}
+\algrenewcommand{\algorithmicwhile}{\textbf{ciklus}}
+\algrenewcommand{\algorithmicdo}{\textbf{amíg}}
+\algrenewcommand{\algorithmicend}{\textbf{vége}}
+\algrenewcommand{\algorithmicif}{\textbf{ha}}
+\algrenewcommand{\algorithmicthen}{\textbf{akkor}}
+\algrenewcommand{\algorithmicelse}{\textbf{különben}}
+\algrenewcommand{\algorithmicrequire}{\textbf{Bemenet}}
+\algrenewcommand{\algorithmicensure}{\textbf{Kimenet}}
+\algrenewtext{EndProcedure}{\algorithmicprocedure\ \algorithmicend}
+\algrenewtext{While}{\algorithmicwhile\ \algorithmicdo\ }
+\algrenewtext{For}{\algorithmicwhile\ }
+\algrenewtext{EndProcedure}{\algorithmicwhile\ \algorithmicend}
+\algrenewtext{EndIf}{\textbf{elágazás} \algorithmicend}
+
+% algorithm boxing
+
+\newcommand{\setalgorithmcounter}{
+    \newcounter{fpcounter}{1}
+    \renewcommand{\thefpcounter}{\arabic{section}-\arabic{fpcounter}}
+}
+
+\newenvironment{algorithmforus}[3]
+{
+    \begin{center}
+    \refstepcounter{fpcounter}%
+    \begin{tabular}{p{#3\textwidth}}
+    \hline
+        \begin{flushleft}
+        {   
+            \vspace{-0.6cm}
+            \noindent\textbf{\thefpcounter~Algoritmus }%
+            \vspace{-1cm}
+            #1\\[1ex]
+        }
+        \end{flushleft}
+    \label{#2}\\
+    \hline
+    }
+    {
+    \vspace{-0.6cm}\\
+    \hline
+    \end{tabular} 
+    \end{center}
+}
+
+% hungarian quotes
+\newcommand{\leftq}{
+    „
+}
 
 % setting the dots right in the table of contents
 \renewcommand{\cftsecdotsep}{1}
