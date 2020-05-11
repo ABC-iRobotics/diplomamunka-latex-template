@@ -11,6 +11,7 @@
 \usepackage{subfig}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{fontawesome} % egyedi listajelekhez például
 \hypersetup{
 	colorlinks=true,
 	linkcolor=blue,
@@ -27,7 +28,7 @@
 
 \setlength{\parindent}{0 mm} % behúzás mértékét állíthatjuk be
 
-
+% megadandó adatok
 \author{Gipsz Jakab}
 \torzsKonyvSzam{T/xxxxxx/xxxxxx/x}
 \neptunNumber{HTKMNE}
@@ -45,6 +46,11 @@
 \deadlineDate{2020. május 22.}
 \terminationDate{2021. május 22.}
 
+% Beállítások
+% első változó: a számozás helye 1 = jobb oldal, 2 = középen
+% második változó: mutassa-e az összes oldalt. 0 = nem, 1 = igen.
+\setPageNumbering{1}{0}
+
 % set the page style
 \makedefaultpagestyle
 
@@ -60,6 +66,7 @@
 	\makeassigmentpagetwo{theassigment}{themustbeinassigment}
 	\makedeclaration
 	\setcounter{page}{1} % start counting pages from here
+	\setalgorithmcounter % set up algorithm numbering
 	
 	\maketoc
 	
@@ -181,7 +188,48 @@
 			\item \textbf{floating:} ez a csuklótípus lehetővé teszi a mozgást mind a 6 szabadsági fokban
 			\item \textbf{fixed:} 0 szabadsági fokkal rendelkező csukló
 		\end{itemize}
-	
+		
+		Lehet többszintű listát csinálni.
+		\begin{itemize}
+            \item A felsorolás első szintjének első eleme
+            \begin{itemize}
+                \item A felsorolás második szintjének első eleme
+                \begin{itemize}
+                    \item A felsorolás harmadik szintjének első eleme
+                    \begin{itemize}
+                        \item A felsorolás harmadik szintjének első eleme
+                        \item A felsorolás harmadik szintjének második eleme
+                    \end{itemize}
+                    \item A felsorolás harmadik szintjének második eleme
+                \end{itemize}
+                \item A felsorolás második szintjének második eleme
+            \end{itemize}
+          \item A felsorolás első szintjének második eleme
+        \end{itemize}
+		
+		
+		Lehet vicces többszintű listát csinálni. (Amit inkább ne tegyünk a szakdolgozatban, de ugyanerre a mintára - akár, a listakörnyezetből kiemelve, az egész dokumentumra nézve is - felül lehet definiálni valamilyen jellel a listákat.)
+        \begin{itemize}
+            \renewcommand\labelitemi{\faGlobe}
+            \item A felsorolás első szintjének első eleme
+            \begin{itemize}
+                \renewcommand\labelitemii{\faAndroid}
+                \item A felsorolás második szintjének első eleme
+                \begin{itemize}
+                    \renewcommand\labelitemiii{\faKey}
+                    \item A felsorolás harmadik szintjének első eleme
+                    \begin{itemize}
+                        \renewcommand\labelitemiv{\faStackOverflow}
+                        \item A felsorolás harmadik szintjének első eleme
+                        \item A felsorolás harmadik szintjének második eleme
+                    \end{itemize}
+                    \item A felsorolás harmadik szintjének második eleme
+                \end{itemize}
+                \item A felsorolás második szintjének második eleme
+            \end{itemize}
+          \item A felsorolás első szintjének második eleme
+        \end{itemize}
+		
 	\subsection{Számozott lista}
 		
 		\begin{enumerate}
@@ -190,7 +238,63 @@
 			\item A számozott lista harmadik eleme
 			\item ...
 		\end{enumerate}
+		
+		De módosíthatjuk a számozás stílusát, például így, csak 1 listára kiterjezdően::
+		
+		\begin{enumerate}
+		    \renewcommand{\labelenumi}{\alph{enumi}.)}
+		    \item A módosított számozott lista első eleme
+		    \item A módosítottszámozott lista második eleme
+			\item A módosítottszámozott lista harmadik eleme
+		\end{enumerate}
+		
+		Sőt, akár soronként is, amit persze nem akar senki, de bemutatja, miből lehet választani:
+		\begin{enumerate}
+		    \renewcommand{\labelenumi}{\arabic{enumi}.} % ez a default
+		    \item A módosított számozott lista első eleme
+		    \renewcommand{\labelenumi}{\alph{enumi}.)}
+		    \item A módosított számozott lista második eleme
+		    \renewcommand{\labelenumi}{\Alph{enumi}.)}
+			\item A módosított számozott lista harmadik eleme
+			\renewcommand{\labelenumi}{\roman{enumi}.}
+			\item A módosított számozott lista negyedik eleme
+			\renewcommand{\labelenumi}{\Roman{enumi}.}
+			\item A módosított számozott lista ötödik eleme
+		\end{enumerate}
+		
+		
+		Sűríthetjük bármelyik listát, például így:
+		
+		\begin{enumerate}[noitemsep]
+		    \renewcommand{\labelenumi}{\alph{enumi}.)}
+		    \item A módosított számozott lista első eleme
+		    \item A módosítottszámozott lista második eleme
+			\item A módosítottszámozott lista harmadik eleme
+		\end{enumerate}
 	
+	\subsection{Pszeudokódok}
+	    Régi \leftq jó" ismerőseink, a pszeudokódok így írhatóak (algorithmic package), amire például így hivatkozhatunk a szövegben: lásd \ref{alg:tocite}:\\ algoritmus.
+	    
+	    %paaméterek: az algoritmus megnevezése, a hivatkozása és a szélesége a lap arányaiban
+	\begin{algorithmforus}{algoritmus}{alg:tocite}{0.98}   
+        \begin{algorithmic}[1]
+            \Require $x$ - \textbf{egész tömb}, $n$ - \textbf{egész} (\textit{tömb mérete}), $value$ - \textbf{egész}
+            \Ensure $y$ - logikai tömb
+            \Procedure{RelatívPrímVizsgálat}{$x$, $n$, $value$}
+                \State $xy \leftarrow \textsc{Létrehoz}(\textbf{logikai})[n] $
+                \For{$i \leftarrow \text{1-től n-ig}$}
+                    \If {$\text{\uppercase{LNKO}}(x[i], value)$}
+                        \State {$y[i] \leftarrow \textbf{igaz}$}
+                    \Else
+                        \State {$y[i] \leftarrow \textbf{hamis}$}
+                    \EndIf
+                \EndFor   
+            \EndProcedure
+        \end{algorithmic}
+    \end{algorithmforus}
+	    
+	 
+	    
 	\subsection{Forráskódok}	
 	
 	A \verb|minted| csomag segítségével tudunk kódokat beilleszteni. Első lehetőség a kód beillesztése a LaTex fileba: 
