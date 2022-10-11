@@ -1,0 +1,95 @@
+% A4 lap méret, 12 pontos betűméret
+\documentclass[12pt,a4paper]{article}
+
+% szükséges csomagok
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[magyar]{babel}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{caption}
+\usepackage[colorlinks=false, pdfborder={0 0 0}, linkcolor=black, unicode]{hyperref}
+\usepackage{mathtools}
+\usepackage{relsize}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{titlesec}
+\usepackage{titletoc}
+
+% lista elemek közti hely, és vonal mint lista elem előtti jel beállítása
+\setlist{nosep, label={--}}
+
+% tartalomjegyzék formázása
+\dottedcontents{section}[1.5em]{}{1.5em}{1pc}
+\dottedcontents{subsection}[3em]{}{2em}{1pc}
+\dottedcontents{subsubsection}[5em]{}{3em}{1pc}
+
+% fejezet cím formázás: 14 pontos betűméret, nagybetűs
+\titleformat{\section}{\normalfont\fontsize{14}{14}\mdseries\MakeUppercase}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{12}{12}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\fontsize{12}{12}\bfseries}{\thesubsubsection}{1em}{}
+
+% fejezet cím térközök
+\titlespacing*{\section}{0em}{0em}{1em}
+\titlespacing*{\subsection}{0em}{1em}{1em}
+\titlespacing*{\subsubsection}{0em}{1em}{1em}
+
+
+% margó
+\usepackage[right=2.50cm, 
+            left=3.50cm, 
+            top=2.50cm, 
+            bottom=4.00cm
+            ]{geometry}
+
+% sorköz
+\linespread{1.15}
+
+% times new roman betűtípus
+\usepackage{times}
+
+% ábra és táblázat számozás beállítása fejezetenként
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{\arabic{section}.\arabic{figure}}
+\setcounter{table}{0}
+\renewcommand{\thetable}{\arabic{section}.\arabic{table}}
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+% ábra, táblázat cím formázás
+\captionsetup[figure]{labelfont={it, small},textfont={it, small},labelsep=colon}
+\captionsetup[table]{labelfont={it, small},textfont={it, small},labelsep=colon}
+
+% hivatkozások formátuma és bib fájl importálása
+\usepackage[backend=biber,style=ieee,doi=false,isbn=false,url=false,eprint=false]{biblatex}
+\addbibresource{references.bib}
+
+% bekezdés behúzása
+\setlength{\parindent}{5 mm}
+
+% bekezdés térköz
+\setlength{\parskip}{8pt}
+
+% ábra és táblajegyzék formázása
+\makeatletter
+\renewcommand\listoffigures{
+    \section{\listfigurename}
+      \@mkboth{\MakeUppercase\listfigurename}%
+              {\MakeUppercase\listfigurename}%
+    \@starttoc{lof}%
+    }
+
+\renewcommand\listoftables{
+    \section{\listtablename}
+      \@mkboth{\MakeUppercase\listtablename}%
+              {\MakeUppercase\listtablename}%
+    \@starttoc{lot}%
+    }
+\makeatother
