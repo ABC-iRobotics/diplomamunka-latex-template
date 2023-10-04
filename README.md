@@ -2,9 +2,16 @@
 
 Overleaf: https://www.overleaf.com/read/fjppbqdcbcys
 
-Ezt érdemes lecopy-zni, vagy innen GitHub-ról letölteni a repo-t *zip*-ben, majd Overleaf-en **New Project -> Upload Project -> Select .zip file.** Ezután bal felső sarokban **Menu -> Main document -> main.tex-re állítani.**
+## Setup
+- Projekt létrehozása:
+    - Overleaf-en belül megnyitás után a **copy**-ra kattintva lemásolni (ahol az összes projekt látható, jobb oldalt van a gomb),
+  *vagy:*
+  - innen GitHub-ról letölteni a repo-t *zip*-ben, majd Overleaf-en **New Project -> Upload Project -> Select .zip file.**
+- **FONTOS!** A projekt első megnyitásakor bal felső sarokban **Menu -> Main document -> main.tex-re kell állítani.** Különben nem fog lefordulni, hibát fog írni. Továbbá fontos, hogy a szerkesztőben **NE** a "**template.tex**" legyen kiválasztva (bármelyik másik amit épp szerkesztünk jó).
+- Ezek után ha minden jól ment lefordul a projekt, és jobb oldalt megjelenik a generált pdf.
 
-## Használati útmutató
+## Használat
+- A sablon eredetileg példa tartalommal van feltöltve, ez használható kiindulási alapnak, vagy kitörölhető.
 
 - A **chapters** mappába kell létrehozni a tex fájlokat fejezetenként. Ezeken belülre kerülnek a szövegek, ábrák, stb. A tagolásra a **"subsection"** és a **"subsubsection"** parancsokat kell használni.
 
