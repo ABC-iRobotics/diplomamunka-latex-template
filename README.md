@@ -21,6 +21,6 @@ Overleaf: https://www.overleaf.com/read/fjppbqdcbcys
 
 - A referenciákat a **references.bib**-be kell bemásolni, *bib* formátumban.
 
-- A saját, személyre szabott borítót, feladatlapot, konzultációs naplót, és nyilatkozatot az **includes** mappába kell tenni értelemszerűen elnevezve, *pdf* formátumban. Ezekhez *docx* formátumú sablonok találhatóak a **docx-sablonok** mappában. *(Éredemes a rendes desktop Word-ben kitölteni és pdf-be exportálni, mert az online Word / LibreOffice használata esetén lehet hogy elrontja.)*
+- A saját, személyre szabott borítót, feladatlapot, konzultációs naplót, és nyilatkozatot az **includes** mappába kell tenni értelemszerűen elnevezve, *pdf* formátumban, a kapott Word sablonokból kiexportálva (példaként az üres sablonok vannak a projektben).
 
 - A rövidítéseket az **acronyms.tex**-be lehet megadni, értelemszerűen, a minta szerint.
